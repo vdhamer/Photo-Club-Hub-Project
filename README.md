@@ -8,7 +8,7 @@ Photo Club Hub shows the work of photo club members to audiences outside their c
 It is meant as a permanent online exhibition, showing a selection of each photographer's best work.
 Unlike most photo sites, it is built around **clubs** rather than individual photographers:
 clubs are where photographers already meet and exhibit together.
-You can look up photographers directly, but you always see them as member of their clubs.
+You can look up photographers directly, but you always see them as a member of their club.
 The clubs supply the data, and stay in full control of it.
 
 Photo Club Hub aims to draw more visitors than club websites, which few people visit nowadays.
@@ -19,14 +19,13 @@ on an Android phone or on a Windows or Mac computer.
 
 ## Where are we today?
 
-- The [iOS app](https://apps.apple.com/nl/app/photo-club-hub/id1178324330?l=en) can be obtained via the App Store,
+- The [app](https://apps.apple.com/nl/app/photo-club-hub/id1178324330?l=en) for iPhone and iPad is available in the App Store,
   and gets improvements and fixes about once a month.
-- The [web version](https://www.fcdegender.nl/hub/en/clubs/) shows the same clubs and members in any browser,
-  on any phone, tablet or computer. A club can add it to its own website with one menu link: on
+- A club can add the [web version](https://www.fcdegender.nl/hub/en/clubs/) to its own website with one menu link: on
   [Fotogroep De Gender's website](https://www.fcdegender.nl/), the "Ledenlijst" menu item leads to
   [its members in the web version](https://www.fcdegender.nl/hub/nl/clubs/fgDeGender/).
 - A handful of clubs show their members and portfolios. Many more are visible on the map, ready for the next step.
-- Clubs have supplied their data themselves, using a written guide. This confirmed that no special technical expertise was needed (although we plan to simplify this further in a future release).
+- A few clubs have supplied their data themselves, using a written guide (although we plan to make this easier).
 
 ## Where is this going?
 
@@ -36,52 +35,54 @@ side.
 | | Today | Goal |
 | --- | --- | --- |
 | Clubs | A handful show members and photos; many more are on the map. | Most photo clubs in the Netherlands showcase the work of their members, and gradually more countries join in. |
-| Supplying data | Clubs edit a structured file, following a written guide, often with help. | A form, largely pre-filled (after the club's consent) from data the club already publishes: "check-and-correct". |
-| Keeping it current | Only when someone notices something is incorrect. | Photo Club Hub checks for chanages on the club's existing website, and suggests a data update. |
-| Exhibitions | Today Photo Club Hub doesn't support exhibitions yet. Clubs announce them on their own website, but people mostly learn about them by e-mails. Example: club secretary notifies nearby clubs, who can forward that to their members, who can make a note in their personal calendar.  | Each club's upcoming and past exhibitions in one place, visible in the app and on the web, so people can discover exhibitions near them without being on anyone's mailing list. Optionally with active app notifications for exhibitions in coming weeks by nearby/"followed" clubs. |
+| Supplying data | Clubs edit a structured file, following a written guide; some manage on their own, others need help. | A form, largely pre-filled (with the club's consent) from data the club already publishes: "check-and-correct". |
+| Keeping it current | Only when someone notices something is incorrect. | Photo Club Hub checks for changes on the club's existing website, and suggests a data update. |
+| Exhibitions | Photo Club Hub doesn't show exhibitions yet. Clubs announce them on their own website, but people mostly hear about them by e-mail: a club's secretary tells nearby clubs, who may pass it on to their members. | Each club's upcoming and past exhibitions in one place, visible in the app and on the web, so people can discover exhibitions near them without being on anyone's mailing list. Optionally, the app can remind you of upcoming exhibitions by nearby clubs or clubs you follow. |
 | Software maintenance | One very motivated volunteer, who built most of it before AI coding assistants were available. | A few volunteers, each looking after the features they made or care most about (likely using AI to make the work easier). |
 
-## Why this can work, and why now
+## Strategy to get the ball rolling
 
 - **The chicken-and-egg problem can be broken from the data side.** With few clubs there is limited content, so
   few people use the app, which gives clubs little motivation to get onboard. The project does not wait for clubs
   to arrive: clubs are put on the map in advance, and a club can then claim its entry and we use smart software to
   advance the data, one level at a time.
-- **Taking part comes in small steps.** Level 1: the club is on the map. Level 2: its current members are listed.
-  Level 3: their portfolios can be viewed. Each level is useful on its own.
-- **Software can take most of the typing off clubs.** Software has become far better at reading what a club
+- **Taking part comes in small steps.** Each level is useful on its own: Level 1: the club is on the map. Level 2: its current members are listed.
+  Level 3: their portfolios can be viewed.
+- **Software can handle most of the data entry for clubs.** Software has become far better at reading what a club
   already publishes. Instead of editing a file and fixing its errors, a club will get its data mostly filled in,
-  and only has to check and correct it. We are not there yet, but this is where supplying data is heading.
-- **Coding assistants lower the barrier for developers.** Joining an existing software project used to mean
-  weeks of finding your way around the code. An assistant now explains in seconds where a value comes from,
-  why a bug happens, or why the compiler warns about a risk. So a volunteer with a few hours a month can
-  improve this project itself, rather than start a separate one.
+  and only has to check and correct it. We are not there yet, but this is where supplying the data is heading.
+- **Coding assistants lower the barrier for developers.** Joining an existing software project used to mean first investing
+  days to find your way around the code. An AI assistant now explains in seconds where a value comes from,
+  what cause a bug, or why the compiler warns about a risk. So a volunteer can
+   improve the code by donating a few hours of time per improvement. Non-code contributions include comments, bug reports or feature requests.
 
-## Principles
+## Principles for contributors
 
-If you cannot live with these, this project is probably not for you.
+The Photo Club Hub has a few underlying assumptions that impact contributors (of code and content):
 
-- **Free, and open source.** Both apps are free, and all code is public under the MIT license.
-- **Clubs own their data.** A club owns its data and can host it itself; alternatively, the project can host
+- **Non-commercial.** Both apps are fully free, and will remain so. It is volunteer powered.
+- **Open source.** The software code is in public repositories on Github.com and falls under an MIT license.
+- **Clubs own their data.** A club owns its data and can host it itself. Alternatively, the project can host
   it on the club's behalf.
-- **Photos stay with the club.** They are shown from the club's own website, never copied.
-- **No accounts, and no revenue model.** Nobody signs up, nothing is sold, and nobody ends up tied to anything.
-- **Adoption before features.** Without data the software has no value, so getting clubs on board comes before
-  new features or fancier technology.
-- **Made for people who are not technical.** Many club members are retired. Plain words, and features that can
-  be used without help, count for more than what is technically possible.
-- **Not limited to one federation or one country.** The emphasis is on the Netherlands for now; the design is
-  not.
-- **Other apps are welcome.** Anyone may build on this. Please talk to us before using the Photo Club Hub name.
+- **Photos stay with the clubs.** They are shown from the club's own website, and are *not* centrally hosted.
+- **No login.** End-users don't sign up, anyone can view the results, no big central database that needs maintenance. 
+The data is protected against accidental/malicious change via GitHub's mechanisms (versioning, submit changes, approval).
+- P**riorities.** Without data the software has no value, so getting clubs on board has the highest priority.
+  Features or other changes (example: AI-based process improvements) that can contribute to that are thus also very relevant.
+  Simplificatons are more valuable (ease-of-maintaince) than fancy technology (especially when it adds complexity). 
+- **Made for end users who are not technical.** Many club members are "a bit older" and joined their club for photography rather than for fussing with software.
+So an intuitive user experience is essential: external simplicity, sometimes at the cost of internal complexity.
+- **Not limited to any organization or any specific country.** The current data is on the Netherlands, but the target audience is international and not limited to any particular nations organizations (e.g. the Fotobond). Having said that, we believe that allignment with such organizations can be mutually beneficial.
+- **Other apps are welcome.** There is an internal "Data" library that can be used to create additional applications (experimental or otherwise). Please allign with us before using the Photo Club Hub name. If you use the project's data you need to reference the project's name. The rights to the actual photo's remain with the photographers.
 
 ## What we ask of you
 
 | You are | We would ask you to | What you get back |
 | --- | --- | --- |
-| A supporter | tell your club about it, try it, and say what is missing | a say in what gets built next |
+| A supporter | try it, spread the word in your club, and tell us what's missing | a say in what gets built next |
 | A developer | pick up a ticket, and look after what you build | a real project with real users, in Swift |
-| A club's data person | publish your club's member list, and fix it when someone reports a mistake | your club's work visible outside the club, with no website to build |
-| A club's board | agree to take part, and name someone to supply the data | a showcase for the club, at no cost |
+| A club's web masger | publish your club's member list, and fix it when someone reports a mistake | your club's work visible outside the club, with no website to build |
+| A club's officials | agree to take part, and enlist someone to supply the data | a showcase for the club, at no cost |
 
 ## Hard questions
 
