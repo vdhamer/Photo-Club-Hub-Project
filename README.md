@@ -43,37 +43,37 @@ side.
 ## Strategy to get the ball rolling
 
 - **The chicken-and-egg problem can be broken from the data side.** With few clubs there is limited content, so
-  few people use the app, which gives clubs little motivation to get onboard. The project does not wait for clubs
-  to arrive: clubs are put on the map in advance, and a club can then claim its entry and we use smart software to
-  advance the data, one level at a time.
-- **Taking part comes in small steps.** Each level is useful on its own: Level 1: the club is on the map. Level 2: its current members are listed.
-  Level 3: their portfolios can be viewed.
+  few people use the app, which gives clubs little motivation to get on board. The project does not wait for clubs
+  to arrive: clubs are put on the map in advance, and a club can then claim its entry and, helped by smart software, take
+  it further one level at a time.
+- **Taking part comes in small steps.** Each level is useful on its own. Level 1: the club is on the map.
+  Level 2: its current members are listed. Level 3: their portfolios can be viewed.
 - **Software can handle most of the data entry for clubs.** Software has become far better at reading what a club
   already publishes. Instead of editing a file and fixing its errors, a club will get its data mostly filled in,
   and only has to check and correct it. We are not there yet, but this is where supplying the data is heading.
 - **Coding assistants lower the barrier for developers.** Joining an existing software project used to mean first investing
   days to find your way around the code. An AI assistant now explains in seconds where a value comes from,
-  what cause a bug, or why the compiler warns about a risk. So a volunteer can
-   improve the code by donating a few hours of time per improvement. Non-code contributions include comments, bug reports or feature requests.
+  what causes a bug, or why the compiler warns about a risk. So a volunteer can
+  improve the code by donating a few hours of time per improvement.
 
-## Principles for contributors
+## Principles
 
-The Photo Club Hub has a few underlying assumptions that impact contributors (of code and content):
+Photo Club Hub rests on a few principles:
 
 - **Non-commercial.** Both apps are fully free, and will remain so. It is volunteer powered.
-- **Open source.** The software code is in public repositories on Github.com and falls under an MIT license.
+- **Open source.** The software code is in public repositories on GitHub and falls under an MIT license.
 - **Clubs own their data.** A club owns its data and can host it itself. Alternatively, the project can host
   it on the club's behalf.
 - **Photos stay with the clubs.** They are shown from the club's own website, and are *not* centrally hosted.
 - **No login.** End-users don't sign up, anyone can view the results, no big central database that needs maintenance. 
-The data is protected against accidental/malicious change via GitHub's mechanisms (versioning, submit changes, approval).
-- P**riorities.** Without data the software has no value, so getting clubs on board has the highest priority.
+  The data is protected against accidental/malicious change via GitHub's mechanisms (versioning, submit changes, approval).
+- **Priorities.** Without data the software has no value, so getting clubs on board has the highest priority.
   Features or other changes (example: AI-based process improvements) that can contribute to that are thus also very relevant.
-  Simplificatons are more valuable (ease-of-maintaince) than fancy technology (especially when it adds complexity). 
+  Simplifications are more valuable (ease of maintenance) than fancy technology (especially when it adds complexity). 
 - **Made for end users who are not technical.** Many club members are "a bit older" and joined their club for photography rather than for fussing with software.
-So an intuitive user experience is essential: external simplicity, sometimes at the cost of internal complexity.
-- **Not limited to any organization or any specific country.** The current data is on the Netherlands, but the target audience is international and not limited to any particular nations organizations (e.g. the Fotobond). Having said that, we believe that allignment with such organizations can be mutually beneficial.
-- **Other apps are welcome.** There is an internal "Data" library that can be used to create additional applications (experimental or otherwise). Please allign with us before using the Photo Club Hub name. If you use the project's data you need to reference the project's name. The rights to the actual photo's remain with the photographers.
+  So an intuitive user experience is essential: external simplicity, sometimes at the cost of internal complexity.
+- **Not limited to any organization or any specific country.** The current data is on the Netherlands, but the target audience is international and not limited to any particular national organizations (e.g. the Fotobond). Having said that, we believe that alignment with such organizations can be mutually beneficial.
+- **Other apps are welcome.** There is an internal "Data" library that can be used to create additional applications (experimental or otherwise). Please align with us before using the Photo Club Hub name. If you use the project's data, please credit Photo Club Hub. The rights to the actual photos remain with the photographers.
 
 ## What we ask of you
 
@@ -81,8 +81,8 @@ So an intuitive user experience is essential: external simplicity, sometimes at 
 | --- | --- | --- |
 | A supporter | try it, spread the word in your club, and tell us what's missing | a say in what gets built next |
 | A developer | pick up a ticket, and look after what you build | a real project with real users, in Swift |
-| A club's web masger | publish your club's member list, and fix it when someone reports a mistake | your club's work visible outside the club, with no website to build |
-| A club's officials | agree to take part, and enlist someone to supply the data | a showcase for the club, at no cost |
+| A club's webmaster | publish your club's member list, and fix it when someone reports a mistake | your club's work visible outside the club, with no website to build |
+| A club's board | agree to take part, and enlist someone to supply the data | a showcase for the club, at no cost |
 
 ## Hard questions
 
@@ -100,38 +100,10 @@ covers related ground: costs, privacy, control over photos, and whether it will 
 6. What does this add over the website a club already has?
 7. What drives you to do this?
 
-## How it works
+## Who owns what
 
-```mermaid
-flowchart LR
-  J[("club data<br/>published files")] --> P["Photo-Club-Hub-Data<br/>shared package"]
-  P --> D1[("database<br/>on the iPhone or iPad")]
-  P --> D2[("database<br/>on the Mac")]
-  D1 --> A["iOS app"]
-  D2 --> H["HTML app"] --> W["web pages<br/>on a club website"]
-  S[("photos<br/>on the club's website")] -.-> A
-  S -.-> W
-```
-
-### Built with
-
-| Built with | iOS app | Web version | What it does |
-| --- | :---: | :---: | --- |
-| Swift and SwiftUI | ✅ | ✅ | the apps themselves (the web version is generated by a Mac app) |
-| [Ignite](https://github.com/twostraws/Ignite) | | ✅ | turns the data into static web pages |
-| Photo-Club-Hub-Data and Core Data | ✅ | ✅ | reads the published files into a database on each device |
-| JSON files | ✅ | ✅ | the club data itself, readable by anyone |
-| Lightroom and Juicebox Pro | ✅ | ✅ | how a club publishes its portfolios, on its own website |
-| [Claude Code](https://code.claude.com/docs/en/overview) | ✅ | ✅ | help with coding, debugging and documentation |
-
-### The four repositories
-
-| Repository | What it holds | Tickets written as |
-| --- | --- | --- |
-| [Photo-Club-Hub](https://github.com/vdhamer/Photo-Club-Hub) | the iOS app, and the live club data | `iOS#123` |
-| [Photo-Club-Hub-HTML](https://github.com/vdhamer/Photo-Club-Hub-HTML) | the Mac app that generates the web version | `HTML#123` |
-| [Photo-Club-Hub-Data](https://github.com/vdhamer/Photo-Club-Hub-Data) | the package both apps share: data model and loaders | `Data#123` |
-| Photo-Club-Hub-Project (this one) | work that is not code: the roadmap, the servers, planning | `Project#123` |
+<!-- Draft diagram, to be redrawn. The technical version (package, databases, data flow) lives in the Data README. -->
+![Who owns what: a central club list points to each club's member list, which points to each member's portfolio. The member lists and portfolios are the club's own, and the photos stay on the club's website. The app and the web version show all of it, without copying photos.](images/who-owns-what.svg)
 
 ## Following along, and taking part
 
@@ -141,6 +113,12 @@ flowchart LR
 - **No git or code needed** to comment on a ticket or a discussion: a free GitHub account and a browser will do.
 - **`Good first issue`** marks tickets a newcomer can pick up.
 - **Everything here is public.** Please don't write the names of club members in tickets or comments.
+- **Ticket numbers** are written as `iOS#123`, `HTML#123`, `Data#123` or `Project#123`, after the four repositories:
+  - [Photo-Club-Hub](https://github.com/vdhamer/Photo-Club-Hub): the app for iPhone and iPad, and the live club data
+  - [Photo-Club-Hub-HTML](https://github.com/vdhamer/Photo-Club-Hub-HTML): the Mac app that generates the web version
+  - [Photo-Club-Hub-Data](https://github.com/vdhamer/Photo-Club-Hub-Data): the part both apps share
+  - Photo-Club-Hub-Project (this one): planning, the roadmap and the servers
+- **Developers** find the code, how it is built and how to contribute in the READMEs of the first three.
 
 ## Further information
 

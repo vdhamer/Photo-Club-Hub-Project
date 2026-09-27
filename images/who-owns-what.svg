@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" font-family="Helvetica, Arial, sans-serif">
+  <title>Photo Club Hub: who owns what (draft 2, left to right)</title>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+    <!-- a photo: small landscape pictogram, readable in black and white -->
+    <symbol id="photo" viewBox="0 0 150 34">
+      <rect x="0" y="0" width="150" height="34" rx="4" fill="#444"/>
+      <path d="M10,28 L22,14 L30,22 L37,16 L48,28 z" fill="#ddd"/>
+      <circle cx="41" cy="9" r="3.5" fill="#ddd"/>
+      <text x="62" y="23" font-size="15" fill="#fff" font-family="Helvetica, Arial, sans-serif">Photo</text>
+    </symbol>
+  </defs>
+
+  <rect width="1200" height="760" fill="#fff"/>
+
+  <!-- ownership: curly braces above the columns, no fill, so they cannot be mistaken for boxes -->
+  <g stroke="#333" stroke-width="2" fill="none">
+    <path d="M60,62 Q60,50 74,50 L171.0,50 Q185.0,50 185.0,38 Q185.0,50 199.0,50 L296,50 Q310,50 310,62"/>
+    <path d="M420,62 Q420,50 434,50 L751.0,50 Q765.0,50 765.0,38 Q765.0,50 779.0,50 L1096,50 Q1110,50 1110,62"/>
+  </g>
+  <text x="185" y="30" font-size="13" font-weight="bold" fill="#333" letter-spacing="1" text-anchor="middle">CENTRAL</text>
+  <text x="765" y="30" font-size="13" font-weight="bold" fill="#333" letter-spacing="1" text-anchor="middle">THE CLUB'S OWN</text>
+
+  <!-- ============ Column 1: club list ============ -->
+  <rect x="60" y="90" width="250" height="330" rx="8" fill="#fff" stroke="#333" stroke-width="2.5"/>
+  <text x="185" y="116" font-size="16" font-weight="bold" fill="#222" text-anchor="middle">Club list</text>
+  <g font-size="16" fill="#222" text-anchor="middle">
+    <rect x="95" y="135" width="180" height="40" rx="5" fill="#fff" stroke="#333" stroke-width="2"/><text x="185" y="161">Club</text>
+    <rect x="95" y="190" width="180" height="40" rx="5" fill="#fff" stroke="#333" stroke-width="2"/><text x="185" y="216">Club</text>
+    <rect x="95" y="245" width="180" height="40" rx="5" fill="#fff" stroke="#333" stroke-width="2"/><text x="185" y="271">Club</text>
+    <rect x="95" y="300" width="180" height="40" rx="5" fill="#fff" stroke="#333" stroke-width="2"/><text x="185" y="326">Club</text>
+    <text x="185" y="378" font-size="22" fill="#555">⋮</text>
+  </g>
+
+  <!-- ============ Column 2: member lists, one per club ============ -->
+  <rect x="440" y="78" width="250" height="330" rx="8" fill="#fff" stroke="#888" stroke-width="1.5"/>
+  <rect x="430" y="84" width="250" height="330" rx="8" fill="#fff" stroke="#888" stroke-width="1.5"/>
+  <rect x="420" y="90" width="250" height="330" rx="8" fill="#fff" stroke="#333" stroke-width="2.5"/>
+  <text x="545" y="116" font-size="16" font-weight="bold" fill="#222" text-anchor="middle">Club's member list</text>
+  <g font-size="16" fill="#222" text-anchor="middle">
+    <rect x="455" y="135" width="180" height="36" rx="5" fill="#cfcfcf" stroke="#333" stroke-width="1.5"/><text x="545" y="159">Member</text>
+    <rect x="455" y="179" width="180" height="36" rx="5" fill="#cfcfcf" stroke="#333" stroke-width="1.5"/><text x="545" y="203">Member</text>
+    <rect x="455" y="223" width="180" height="36" rx="5" fill="#cfcfcf" stroke="#333" stroke-width="1.5"/><text x="545" y="247">Member</text>
+    <rect x="455" y="267" width="180" height="36" rx="5" fill="#cfcfcf" stroke="#333" stroke-width="1.5"/><text x="545" y="291">Member</text>
+    <rect x="455" y="311" width="180" height="36" rx="5" fill="#cfcfcf" stroke="#333" stroke-width="1.5"/><text x="545" y="335">Member</text>
+    <text x="545" y="378" font-size="22" fill="#555">⋮</text>
+  </g>
+
+  <!-- ============ Column 3: portfolios, one per member ============ -->
+  <rect x="870" y="72" width="250" height="330" rx="8" fill="#cfcfcf" stroke="#999" stroke-width="1.5"/>
+  <rect x="860" y="78" width="250" height="330" rx="8" fill="#cfcfcf" stroke="#888" stroke-width="1.5"/>
+  <rect x="850" y="84" width="250" height="330" rx="8" fill="#cfcfcf" stroke="#888" stroke-width="1.5"/>
+  <rect x="840" y="90" width="250" height="330" rx="8" fill="#cfcfcf" stroke="#333" stroke-width="2.5"/>
+  <text x="965" y="116" font-size="16" font-weight="bold" fill="#222" text-anchor="middle">Member's portfolio</text>
+  <g font-size="16" fill="#222" text-anchor="middle">
+    <use href="#photo" x="890" y="136" width="150" height="34"/>
+    <use href="#photo" x="890" y="180" width="150" height="34"/>
+    <use href="#photo" x="890" y="224" width="150" height="34"/>
+    <use href="#photo" x="890" y="268" width="150" height="34"/>
+    <use href="#photo" x="890" y="312" width="150" height="34"/>
+    <text x="965" y="378" font-size="22" fill="#555">⋮</text>
+  </g>
+
+  <!-- ============ links: each item points to the next file ============ -->
+  <path d="M275,155 L416,155" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <text x="345" y="146" font-size="13" fill="#333" text-anchor="middle">points to</text>
+  <path d="M275,210 L318,210" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M275,265 L318,265" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M275,320 L318,320" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+
+  <path d="M635,153 L836,153" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <text x="742" y="144" font-size="13" fill="#333" text-anchor="middle">points to</text>
+  <path d="M635,197 L690,197" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M635,241 L690,241" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M635,285 L690,285" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M635,329 L690,329" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+
+  <!-- ============ captions: what, who maintains it, where it lives ============ -->
+  <g font-size="14" fill="#222" text-anchor="middle">
+    <text x="185" y="452" font-size="16" font-weight="bold">Level 1: the clubs</text>
+    <text x="185" y="474">maintained by the project,</text>
+    <text x="185" y="492">with a volunteer per region</text>
+    <text x="185" y="514" fill="#444">lives on GitHub</text>
+
+    <text x="545" y="452" font-size="16" font-weight="bold">Level 2: the members</text>
+    <text x="545" y="474">one list per club,</text>
+    <text x="545" y="492">maintained by the club</text>
+    <text x="545" y="514" fill="#444">lives on GitHub or the club's site</text>
+
+    <text x="965" y="452" font-size="16" font-weight="bold">Level 3: the photos</text>
+    <text x="965" y="474">chosen by the club and its members,</text>
+    <text x="965" y="492">rights stay with the photographer</text>
+    <text x="965" y="514" font-weight="bold">lives on the club's own website</text>
+  </g>
+
+  <!-- ============ what people see: every level feeds both ways of viewing ============ -->
+  <g stroke="#333" stroke-width="2.5" fill="none">
+    <path d="M185,530 L185,572"/>
+    <path d="M545,530 L545,572"/>
+    <path d="M965,530 L965,572"/>
+    <path d="M185,572 L965,572"/>
+    <path d="M360,572 L360,610" marker-end="url(#arr)"/>
+    <path d="M840,572 L840,610" marker-end="url(#arr)"/>
+  </g>
+  <text x="1110" y="598" font-size="13" fill="#333" text-anchor="end">photos are shown straight from</text>
+  <text x="1110" y="615" font-size="13" fill="#333" text-anchor="end">the club's website: <tspan font-weight="bold">no copies</tspan></text>
+
+  <!-- phone -->
+  <rect x="343" y="628" width="34" height="62" rx="6" fill="#fff" stroke="#333" stroke-width="2.5"/>
+  <rect x="347" y="636" width="26" height="46" rx="2" fill="#cfcfcf"/>
+  <text x="360" y="718" font-size="18" font-weight="bold" fill="#222" text-anchor="middle">The app</text>
+  <text x="360" y="740" font-size="14" fill="#444" text-anchor="middle">on iPhone and iPad</text>
+
+  <!-- laptop and a phone: the web version also runs on Android phones -->
+  <rect x="775" y="624" width="70" height="46" rx="4" fill="#fff" stroke="#333" stroke-width="2.5"/>
+  <rect x="781" y="630" width="58" height="34" fill="#cfcfcf"/>
+  <path d="M762,678 L858,678 L850,690 L770,690 z" fill="#fff" stroke="#333" stroke-width="2.5"/>
+  <rect x="878" y="628" width="34" height="62" rx="6" fill="#fff" stroke="#333" stroke-width="2.5"/>
+  <rect x="882" y="636" width="26" height="46" rx="2" fill="#cfcfcf"/>
+  <text x="840" y="718" font-size="18" font-weight="bold" fill="#222" text-anchor="middle">The web version</text>
+  <text x="840" y="740" font-size="14" fill="#444" text-anchor="middle">in any browser, on any computer or phone</text>
+</svg>
