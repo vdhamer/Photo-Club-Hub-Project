@@ -4,7 +4,18 @@
 
 ## What does it do?
 
-Photo Club Hub shows the work of photo club members to audiences outside their club. It is meant as a permanent online exhibition, with a selection of each photographer's best work. It sits between a club's own website, which few people visit nowadays, and social media, which is too full of distractions. The focus is on photographers as members of clubs, so you can go from a club to its members and back. The clubs supply the data, and stay in full control of it. You view it all in a free iPhone and iPad app, or as interlinked web pages in any browser on any device.
+Photo Club Hub shows the work of photo club members to audiences outside their club.
+It is meant as a permanent online exhibition, showing a selection of each photographer's best work.
+Unlike most photo sites, it is built around **clubs** rather than individual photographers:
+clubs are where photographers already meet and exhibit together.
+You can look up photographers directly, but you always see them as member of their clubs.
+The clubs supply the data, and stay in full control of it.
+
+Photo Club Hub aims to draw more visitors than club websites, which few people visit nowadays.
+It also aims to provide a better viewing experience than social media, with its never-ending distractions.
+
+Photo Club Hub comes as an app for iPhone and iPad, and as a web version that works in any browser,
+on an Android phone or on a Windows or Mac computer.
 
 ## Where are we today?
 
@@ -14,21 +25,21 @@ Photo Club Hub shows the work of photo club members to audiences outside their c
   on any phone, tablet or computer. A club can add it to its own website with one menu link: on
   [Fotogroep De Gender's website](https://www.fcdegender.nl/), the "Ledenlijst" menu item leads to
   [its members in the web version](https://www.fcdegender.nl/hub/nl/clubs/fgDeGender/).
-- A handful of clubs show their members and portfolios. Many more are on the map, ready for the next step.
-- Clubs have supplied their data themselves, using a written guide. This confirmed that no special technical expertise was needed (although we have plans to simplify this further).
+- A handful of clubs show their members and portfolios. Many more are visible on the map, ready for the next step.
+- Clubs have supplied their data themselves, using a written guide. This confirmed that no special technical expertise was needed (although we plan to simplify this further in a future release).
 
 ## Where is this going?
 
 Readers often judge by what they can see today, but today's version is part of a larger idea. So here are both side by
 side.
 
-| | Today | Where it is heading |
+| | Today | Goal |
 | --- | --- | --- |
-| Clubs | A handful show members and photos; many more are on the map. | A majority of the photo clubs in the Netherlands showcase the work of their members, and gradually more countries join in. |
-| Supplying data | Clubs edit a structured file, following a written guide, often with help. | A form, mostly already filled in (after the club's consent) from data the club already publishes: "check-and-correct". |
-| Keeping it current | Only when someone notices something is outdated. | The same, but the software notices when someone joins or leaves on the club's website, and suggests the change. |
-| Exhibitions | Clubs announce them on their own website, but people only hear about them when the news is passed on by hand: from the club's secretary to secretaries of nearby clubs, and from them to their members. Photo Club Hub doesn't show exhibitions yet. | Each club's upcoming and past exhibitions in one place, in the app and on the web, so people can discover exhibitions near them without being on anyone's mailing list. |
-| Software maintenance | One very motivated volunteer, who built most of it before AI coding assistants existed. | A few volunteers, each looking after the parts they created (likely with AI support). |
+| Clubs | A handful show members and photos; many more are on the map. | Most photo clubs in the Netherlands showcase the work of their members, and gradually more countries join in. |
+| Supplying data | Clubs edit a structured file, following a written guide, often with help. | A form, largely pre-filled (after the club's consent) from data the club already publishes: "check-and-correct". |
+| Keeping it current | Only when someone notices something is incorrect. | Photo Club Hub checks for chanages on the club's existing website, and suggests a data update. |
+| Exhibitions | Today Photo Club Hub doesn't support exhibitions yet. Clubs announce them on their own website, but people mostly learn about them by e-mails. Example: club secretary notifies nearby clubs, who can forward that to their members, who can make a note in their personal calendar.  | Each club's upcoming and past exhibitions in one place, visible in the app and on the web, so people can discover exhibitions near them without being on anyone's mailing list. Optionally with active app notifications for exhibitions in coming weeks by nearby/"followed" clubs. |
+| Software maintenance | One very motivated volunteer, who built most of it before AI coding assistants were available. | A few volunteers, each looking after the features they made or care most about (likely using AI to make the work easier). |
 
 ## Why this can work, and why now
 
