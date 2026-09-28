@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 600" font-family="Helvetica, Arial, sans-serif">
+  <title>Photo Club Hub: breaking the chicken-and-egg problem (draft)</title>
+  <!-- Generated from one script for both languages. Light boxes: the vicious circle. Dark blue-grey boxes: our levers. -->
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+  <rect width="920" height="600" fill="#fff"/>
+  <!-- the vicious circle, clockwise -->
+  <path d="M578,150 Q730,150 730,296" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <path d="M730,364 Q730,510 582,510" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <path d="M338,510 Q190,510 190,364" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <path d="M190,296 Q190,150 338,150" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <rect x="342.0" y="120.0" width="236" height="60" rx="8" fill="#CDE2FB" stroke="#333" stroke-width="2.5"/>
+  <text x="460" y="146" font-size="17" fill="#222" text-anchor="middle">Few clubs</text>
+  <text x="460" y="167" font-size="17" fill="#222" text-anchor="middle">take part</text>
+  <rect x="612.0" y="300.0" width="236" height="60" rx="8" fill="#CDE2FB" stroke="#333" stroke-width="2.5"/>
+  <text x="730" y="326" font-size="17" fill="#222" text-anchor="middle">Little</text>
+  <text x="730" y="347" font-size="17" fill="#222" text-anchor="middle">to see</text>
+  <rect x="342.0" y="480.0" width="236" height="60" rx="8" fill="#CDE2FB" stroke="#333" stroke-width="2.5"/>
+  <text x="460" y="506" font-size="17" fill="#222" text-anchor="middle">Few people</text>
+  <text x="460" y="527" font-size="17" fill="#222" text-anchor="middle">use it</text>
+  <rect x="72.0" y="300.0" width="236" height="60" rx="8" fill="#CDE2FB" stroke="#333" stroke-width="2.5"/>
+  <text x="190" y="326" font-size="17" fill="#222" text-anchor="middle">Little reason for</text>
+  <text x="190" y="347" font-size="17" fill="#222" text-anchor="middle">a club to join</text>
+  <!-- illustration: hatching chick -->
+  <g stroke="#333" stroke-width="2.5" stroke-linejoin="round">
+    <circle cx="460" cy="268" r="30" fill="#FFD34D"/>
+    <circle cx="450" cy="264" r="3.8" fill="#222" stroke="none"/><circle cx="451.3" cy="262.7" r="1.2" fill="#fff" stroke="none"/>
+    <circle cx="470" cy="264" r="3.8" fill="#222" stroke="none"/><circle cx="471.3" cy="262.7" r="1.2" fill="#fff" stroke="none"/>
+    <path d="M454,274 L466,274 L460,283 Z" fill="#F08A24" stroke-width="1.5"/>
+    <path d="M414,290 L425,280 L436,291 L447,280 L458,291 L469,280 L480,291 L491,280 L506,290 A46,40 0 0 1 414,290 Z" fill="#fff"/>
+    <g transform="rotate(-12 460 240)">
+      <path d="M418,254 L427,245 L436,254 L445,245 L454,254 L463,245 L472,254 L481,245 L490,254 L502,254 A42,34 0 0 0 418,254 Z" fill="#fff"/>
+    </g>
+  </g>
+  <text x="460" y="372" font-size="20" font-weight="bold" fill="#222" text-anchor="middle">The chicken-and-egg</text>
+  <text x="460" y="396" font-size="20" font-weight="bold" fill="#222" text-anchor="middle">problem</text>
+  <!-- where the strategy breaks the circle -->
+  <g stroke-linecap="round">
+    <line x1="685.5" y1="180.3" x2="698.5" y2="192.7" stroke="#fff" stroke-width="9"/>
+    <line x1="694.5" y1="170.9" x2="676.5" y2="189.6" stroke="#333" stroke-width="3.5"/>
+    <line x1="707.5" y1="183.4" x2="689.5" y2="202.1" stroke="#333" stroke-width="3.5"/>
+  </g>
+  <g stroke-linecap="round">
+    <line x1="220.6" y1="192.8" x2="233.4" y2="180.2" stroke="#fff" stroke-width="9"/>
+    <line x1="211.5" y1="183.6" x2="229.7" y2="202.1" stroke="#333" stroke-width="3.5"/>
+    <line x1="224.3" y1="170.9" x2="242.5" y2="189.4" stroke="#333" stroke-width="3.5"/>
+  </g>
+  <rect x="630" y="14" width="270" height="86" rx="8" fill="#1C5CAB"/>
+  <text x="765.0" y="42" font-size="15" fill="#fff" text-anchor="middle">We put clubs on the map</text>
+  <text x="765.0" y="64" font-size="15" fill="#fff" text-anchor="middle">in advance, so there is</text>
+  <text x="765.0" y="86" font-size="15" fill="#fff" text-anchor="middle">something to see</text>
+  <path d="M765.0,100 L700,168" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <rect x="20" y="14" width="270" height="86" rx="8" fill="#1C5CAB"/>
+  <text x="155.0" y="42" font-size="15" fill="#fff" text-anchor="middle">We simplify data entry to</text>
+  <text x="155.0" y="64" font-size="15" fill="#fff" text-anchor="middle">check-and-correct, and split</text>
+  <text x="155.0" y="86" font-size="15" fill="#fff" text-anchor="middle">the process into a few steps</text>
+  <path d="M155.0,100 L219,168" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+</svg>

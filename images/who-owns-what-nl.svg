@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" font-family="Helvetica, Arial, sans-serif">
+  <title>Fotoclub Hub: wie is eigenaar van wat (concept)</title>
+  <!-- Generated from one script for both languages. Cool blue-grey: maintained by the project. Warm amber to brown:
+       maintained by the club, darker down the tree (club light, member mid, photo dark). The steps stay distinct in black and white. -->
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+    <symbol id="landscape" viewBox="0 0 40 26"><path d="M2,24 L13,9 L20,17 L26,11 L38,24 z" fill="#fff"/><circle cx="31" cy="5" r="3.5" fill="#fff"/></symbol>
+  </defs>
+  <rect width="1200" height="760" fill="#fff"/>
+  <!-- ownership: curly braces above the columns -->
+  <g stroke="#333" stroke-width="2" fill="none">
+    <path d="M60,67 Q60,55 74,55 L171.0,55 Q185.0,55 185.0,43 Q185.0,55 199.0,55 L296,55 Q310,55 310,67"/>
+    <path d="M420,67 Q420,55 434,55 L756.0,55 Q770.0,55 770.0,43 Q770.0,55 784.0,55 L1106,55 Q1120,55 1120,67"/>
+  </g>
+  <rect x="61" y="12" width="249" height="26" rx="13" fill="#CDE2FB" stroke="#333" stroke-width="1.5"/>
+  <text x="185" y="30" font-size="13" font-weight="bold" fill="#222" letter-spacing="1" text-anchor="middle">BEHEERD DOOR HET PROJECT</text>
+  <rect x="664" y="12" width="212" height="26" rx="13" fill="#F0975F" stroke="#333" stroke-width="1.5"/>
+  <text x="770" y="30" font-size="13" font-weight="bold" fill="#222" letter-spacing="1" text-anchor="middle">BEHEERD DOOR DE CLUB</text>
+  <!-- column 1: club list (central) -->
+  <rect x="60" y="90" width="250" height="330" rx="8" fill="#CDE2FB" stroke="#333" stroke-width="2.5"/>
+  <text x="185" y="116" font-size="16" font-weight="bold" fill="#222" text-anchor="middle">Clublijst</text>
+  <rect x="95" y="135" width="180" height="36" rx="5" fill="#F0975F" stroke="#333" stroke-width="1.5"/><text x="185" y="159" font-size="16" fill="#111" text-anchor="middle">Club</text>
+  <rect x="95" y="179" width="180" height="36" rx="5" fill="#F0975F" stroke="#333" stroke-width="1.5"/><text x="185" y="203" font-size="16" fill="#111" text-anchor="middle">Club</text>
+  <rect x="95" y="223" width="180" height="36" rx="5" fill="#F0975F" stroke="#333" stroke-width="1.5"/><text x="185" y="247" font-size="16" fill="#111" text-anchor="middle">Club</text>
+  <rect x="95" y="267" width="180" height="36" rx="5" fill="#F0975F" stroke="#333" stroke-width="1.5"/><text x="185" y="291" font-size="16" fill="#111" text-anchor="middle">Club</text>
+  <rect x="95" y="311" width="180" height="36" rx="5" fill="#F0975F" stroke="#333" stroke-width="1.5"/><text x="185" y="335" font-size="16" fill="#111" text-anchor="middle">Club</text>
+  <text x="185" y="378" font-size="22" fill="#555" text-anchor="middle">⋮</text>
+  <!-- column 2: one member list per club (club color), holding members -->
+  <rect x="440" y="78" width="250" height="330" rx="8" fill="#F0975F" stroke="#888" stroke-width="1.5"/>
+  <rect x="430" y="84" width="250" height="330" rx="8" fill="#F0975F" stroke="#888" stroke-width="1.5"/>
+  <rect x="420" y="90" width="250" height="330" rx="8" fill="#F0975F" stroke="#333" stroke-width="2.5"/>
+  <text x="545" y="116" font-size="16" font-weight="bold" fill="#111" text-anchor="middle">Ledenlijst van de club</text>
+  <rect x="455" y="135" width="180" height="36" rx="5" fill="#E0602C" stroke="#333" stroke-width="1.5"/><text x="545" y="159" font-size="16" fill="#111" text-anchor="middle">Lid</text>
+  <rect x="455" y="179" width="180" height="36" rx="5" fill="#E0602C" stroke="#333" stroke-width="1.5"/><text x="545" y="203" font-size="16" fill="#111" text-anchor="middle">Lid</text>
+  <rect x="455" y="223" width="180" height="36" rx="5" fill="#E0602C" stroke="#333" stroke-width="1.5"/><text x="545" y="247" font-size="16" fill="#111" text-anchor="middle">Lid</text>
+  <rect x="455" y="267" width="180" height="36" rx="5" fill="#E0602C" stroke="#333" stroke-width="1.5"/><text x="545" y="291" font-size="16" fill="#111" text-anchor="middle">Lid</text>
+  <rect x="455" y="311" width="180" height="36" rx="5" fill="#E0602C" stroke="#333" stroke-width="1.5"/><text x="545" y="335" font-size="16" fill="#111" text-anchor="middle">Lid</text>
+  <text x="545" y="378" font-size="22" fill="#222" text-anchor="middle">⋮</text>
+  <!-- column 3: one portfolio per member (member color), holding photos -->
+  <rect x="870" y="72" width="250" height="330" rx="8" fill="#E0602C" stroke="#999" stroke-width="1.5"/>
+  <rect x="860" y="78" width="250" height="330" rx="8" fill="#E0602C" stroke="#888" stroke-width="1.5"/>
+  <rect x="850" y="84" width="250" height="330" rx="8" fill="#E0602C" stroke="#888" stroke-width="1.5"/>
+  <rect x="840" y="90" width="250" height="330" rx="8" fill="#E0602C" stroke="#333" stroke-width="2.5"/>
+  <text x="965" y="116" font-size="16" font-weight="bold" fill="#111" text-anchor="middle">Portfolio van het lid</text>
+  <rect x="885" y="135" width="160" height="36" rx="5" fill="#3B3B3F" stroke="#222" stroke-width="1"/><use href="#landscape" x="895" y="140" width="40" height="26"/><text x="950" y="159" font-size="16" fill="#fff">Foto</text>
+  <rect x="885" y="179" width="160" height="36" rx="5" fill="#3B3B3F" stroke="#222" stroke-width="1"/><use href="#landscape" x="895" y="184" width="40" height="26"/><text x="950" y="203" font-size="16" fill="#fff">Foto</text>
+  <rect x="885" y="223" width="160" height="36" rx="5" fill="#3B3B3F" stroke="#222" stroke-width="1"/><use href="#landscape" x="895" y="228" width="40" height="26"/><text x="950" y="247" font-size="16" fill="#fff">Foto</text>
+  <rect x="885" y="267" width="160" height="36" rx="5" fill="#3B3B3F" stroke="#222" stroke-width="1"/><use href="#landscape" x="895" y="272" width="40" height="26"/><text x="950" y="291" font-size="16" fill="#fff">Foto</text>
+  <rect x="885" y="311" width="160" height="36" rx="5" fill="#3B3B3F" stroke="#222" stroke-width="1"/><use href="#landscape" x="895" y="316" width="40" height="26"/><text x="950" y="335" font-size="16" fill="#fff">Foto</text>
+  <text x="965" y="378" font-size="22" fill="#222" text-anchor="middle">⋮</text>
+  <!-- links: each item points to the next file -->
+  <path d="M275,153 L416,153" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <text x="366" y="144" font-size="13" fill="#333" text-anchor="middle">verwijst naar</text>
+  <path d="M275,197 L318,197" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M275,241 L318,241" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M275,285 L318,285" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M275,329 L318,329" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M635,153 L836,153" stroke="#333" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <text x="742" y="144" font-size="13" fill="#333" text-anchor="middle">verwijst naar</text>
+  <path d="M635,197 L690,197" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M635,241 L690,241" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M635,285 L690,285" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <path d="M635,329 L690,329" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <!-- captions: what, who maintains it, where it lives -->
+  <text x="185" y="452" font-size="16" font-weight="bold" fill="#222" text-anchor="middle">Niveau 1: de clubs</text>
+  <text x="185" y="474" font-size="14" fill="#222" text-anchor="middle">bijgehouden door het project,</text>
+  <text x="185" y="492" font-size="14" fill="#222" text-anchor="middle">met een vrijwilliger per afdeling</text>
+  <text x="185" y="514" font-size="14" fill="#444" text-anchor="middle">staat op GitHub</text>
+  <text x="545" y="452" font-size="16" font-weight="bold" fill="#222" text-anchor="middle">Niveau 2: de leden</text>
+  <text x="545" y="474" font-size="14" fill="#222" text-anchor="middle">één lijst per club,</text>
+  <text x="545" y="492" font-size="14" fill="#222" text-anchor="middle">bijgehouden door de club</text>
+  <text x="545" y="514" font-size="14" fill="#444" text-anchor="middle">staat op GitHub of de clubsite</text>
+  <text x="965" y="452" font-size="16" font-weight="bold" fill="#222" text-anchor="middle">Niveau 3: de foto&#39;s</text>
+  <text x="965" y="474" font-size="14" fill="#222" text-anchor="middle">gekozen door de club en haar leden,</text>
+  <text x="965" y="492" font-size="14" fill="#222" text-anchor="middle">rechten blijven bij de fotograaf</text>
+  <text x="965" y="514" font-size="14" fill="#444" text-anchor="middle" font-weight="bold">staat op de eigen website van de club</text>
+  <!-- what people see: every level feeds both ways of viewing -->
+  <g stroke="#333" stroke-width="2.5" fill="none">
+    <path d="M185,530 L185,572"/>
+    <path d="M545,530 L545,572"/>
+    <path d="M965,530 L965,572"/>
+    <path d="M185,572 L965,572"/>
+    <path d="M360,572 L360,610" marker-end="url(#arr)"/>
+    <path d="M840,572 L840,610" marker-end="url(#arr)"/>
+  </g>
+  <text x="1110" y="598" font-size="13" fill="#333" text-anchor="end">foto&#39;s komen rechtstreeks van</text>
+  <text x="1110" y="615" font-size="13" fill="#333" text-anchor="end">de website van de club: <tspan font-weight="bold">geen kopieën</tspan></text>
+  <rect x="343" y="628" width="34" height="62" rx="6" fill="#fff" stroke="#333" stroke-width="2.5"/>
+  <rect x="347" y="636" width="26" height="46" rx="2" fill="#CDE2FB" stroke="#999" stroke-width="1"/>
+  <text x="360" y="718" font-size="18" font-weight="bold" fill="#222" text-anchor="middle">De app</text>
+  <text x="360" y="740" font-size="14" fill="#444" text-anchor="middle">op iPhone en iPad</text>
+  <rect x="775" y="624" width="70" height="46" rx="4" fill="#fff" stroke="#333" stroke-width="2.5"/>
+  <rect x="781" y="630" width="58" height="34" fill="#CDE2FB" stroke="#999" stroke-width="1"/>
+  <path d="M770,678 L850,678 L858,690 L762,690 z" fill="#fff" stroke="#333" stroke-width="2.5"/>
+  <rect x="878" y="628" width="34" height="62" rx="6" fill="#fff" stroke="#333" stroke-width="2.5"/>
+  <rect x="882" y="636" width="26" height="46" rx="2" fill="#CDE2FB" stroke="#999" stroke-width="1"/>
+  <text x="840" y="718" font-size="18" font-weight="bold" fill="#222" text-anchor="middle">De webversie</text>
+  <text x="840" y="740" font-size="14" fill="#444" text-anchor="middle">in elke browser, op elke computer of telefoon</text>
+</svg>
