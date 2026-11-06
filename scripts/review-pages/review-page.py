@@ -1,41 +1,72 @@
 #!/usr/bin/env python3
-"""Build a review page (map + table) of the clubs of one Fotobond afdeling, for the afdeling's contact (Data#68).
+# Created by Claude Code (guided by Peter van den Hamer) on 19/10/2026.
+
+"""Build a review page (map + table) of the clubs of one Fotobond afdeling, for the afdeling's contact (Data#68), or
+of the Belgian clubs.
 
 Usage: python3 review-page.py <afdeling>      e.g. python3 review-page.py 06
-Reads clubsNL<afdeling>.level1.json from the iOS repo's working tree, which should match what is live on GitHub
-main, so the page shows what the contact sees in the app. Writes one self-contained HTML file to the afdeling's
-folder on the Desktop, under the same name as online (fcdegender.nl/hub/review/afd<afdeling>/afdeling<afdeling>.html).
+       python3 review-page.py BE              for Belgium
+Reads clubsNL<afdeling>.level1.json (or clubsBE.level1.json) from the iOS repo's working tree, which should match what
+is live on GitHub main, so the page shows what the reader sees in the apps.
+Writes one self-contained HTML file into ~/Desktop/review, which mirrors fcdegender.nl/hub/review, at the same path
+as online: afd<afdeling>/afdeling<afdeling>.html, or belgie/belgie.html.
 The texts on the page are Dutch, because the reader is Dutch.
 
 Generalized from review-page-03.py, which also compared a search draft against the file. Here the review comes
-after the data went live, so the page shows only the file. To add an afdeling: a line in AFDELINGEN, and its notes
-and doubts below.
+after the data went live, so the page shows only the file.
 """
 
+import datetime
 import html
 import json
 import math
 import sys
 from pathlib import Path
 
-# afdeling: (name as the Fotobond writes it, folder on the Desktop for the working files)
+from former import former_entry
+
+# afdeling: name as the Fotobond writes it. All 16 afdelingen; there is no afdeling 13. index-page.py reads this, and
+# BELGIUM below, from this file.
 AFDELINGEN = {
-    "03": ("Drenthe-Vechtdal", "Drenthe"),
-    "06": ("Gelderland Zuid", "Gelderland"),
-    "15": ("Brabant West", "Brabant West"),
-    "16": ("Brabant Oost", "Brabant Oost"),
+    "01": "Groningen",
+    "02": "Friesland",
+    "03": "Drenthe-Vechtdal",
+    "04": "Transijssel",
+    "05": "Twente",
+    "06": "Gelderland Zuid",
+    "07": "Utrecht-'t Gooi",
+    "08": "Noord-Holland Noord",
+    "09": "Kennemerland",
+    "10": "Amsterdam",
+    "11": "Zuid-Holland Noord",
+    "12": "Zuid-Holland Zuid",
+    "14": "Zeeland",
+    "15": "Brabant West",
+    "16": "Brabant Oost",
+    "17": "Limburg",
 }
+# Belgium has no afdelingen, so its page is named after the country, not like an afdeling's page: this is its folder
+# and file name. It has no Fotobond colors or numbers, since Belgian clubs can't be members.
+BELGIUM = "belgie"
 
-if len(sys.argv) != 2 or sys.argv[1] not in AFDELINGEN:
-    sys.exit(f"Usage: python3 review-page.py <afdeling>, one of {', '.join(AFDELINGEN)}")
+if len(sys.argv) != 2 or sys.argv[1] not in [*AFDELINGEN, "BE"]:
+    sys.exit(f"Usage: python3 review-page.py <afdeling>, one of {', '.join(AFDELINGEN)}, or BE for Belgium")
 
-AFDELING = sys.argv[1]
-AFDELING_NAME, FOLDER = AFDELINGEN[AFDELING]
-SOURCE = Path.home() / f"Developer/Xcode projects/SwiftUI/Photo Club Hub/JSON/clubsNL{AFDELING}.level1.json"
-OUTPUT = Path.home() / f"Desktop/{FOLDER}/afdeling{AFDELING}.html"
+KEY = sys.argv[1]  # the afdeling's number, or BE; it also keys NOTES and DOUBTS
+IS_BELGIUM = KEY == "BE"
+JSON_DIR = Path.home() / "Developer/Xcode projects/SwiftUI/Photo Club Hub/JSON"
+SITE = Path.home() / "Desktop/review"  # mirrors fcdegender.nl/hub/review, so it can be uploaded as one tree
+if IS_BELGIUM:
+    SOURCE = JSON_DIR / "clubsBE.level1.json"
+    OUTPUT = SITE / f"{BELGIUM}/{BELGIUM}.html"
+    HEADING = "Fotoclubs in België"
+else:
+    SOURCE = JSON_DIR / f"clubsNL{KEY}.level1.json"
+    OUTPUT = SITE / f"afd{KEY}/afdeling{KEY}.html"
+    HEADING = f"Fotoclubs in afdeling {KEY}, {AFDELINGEN[KEY]}"
 
-# Short notes per club, keyed by nickName (unique across all clubsNL files): mostly how its name or town was
-# chosen, because fullName and town identify a club and are costly to change later.
+# Short notes per club, keyed by page (afdeling or BE) and then by nickName (unique across all files): mostly how its
+# name or town was chosen, because fullName and town identify a club and are costly to change later.
 NOTES = {
     "03": {
         "fcAfovera": "De website noemt nog bijeenkomsten bij leden thuis; de markering blijft op de Maasstraat.",
@@ -55,7 +86,7 @@ NOTES = {
         "fcPositievenBeuningen": "Een andere club dan De Positieven in Tiel.",
     },
     "15": {
-        "AFVP": "AFV voluit geschreven, zoals bij elke club. De website noemt de club Fotoclub AFVP Etten-Leur.",
+        "afvPrinsenbeek": "AFV voluit geschreven, zoals bij elke club. De website noemt de club Fotoclub AFVP Etten-Leur.",
         "afvOntspanner": "AFV voluit geschreven, zoals bij elke club.",
         "afvKontrast": "AFV voluit geschreven, zoals bij elke club.",
         "TAFV": "Naam voluit, zoals op de website van de club.",
@@ -77,20 +108,29 @@ NOTES = {
         "fcAFC68": "Naam voluit; de Fotobond schrijft AFC68.",
         "fcKiekus": "Plaats Wanroij, de officiële spelling; de Fotobond schrijft Wanroy.",
         "fcBGC": "Plaats Sint Agatha; de Fotobond noemt Oeffelt.",
-        "fcRapenland": "Volgens de Fotobond club 1626; dat nummer staat nog niet in de app.",
-        "fegGemert": "Heeft Fotobond-nummer 1632 in de app, maar staat niet op de ledenlijst van de Fotobond.",
+        "fcRapenland": "Volgens de Fotobond club 1626; dat nummer staat nog niet in de apps.",
+        "fegGemert": "Heeft Fotobond-nummer 1632 in de apps, maar staat niet op de ledenlijst van de Fotobond.",
     },
 }
 
-# Clubs whose afdeling is in doubt, keyed by nickName, with the question. They are in the app either way: the
+# Clubs whose afdeling is in doubt, keyed by nickName, with the question. They are in the apps either way: the
 # afdeling only decides which file holds them.
 DOUBTS = {}
 
-STATUS = {  # key: (label, color); green and orange from the Okabe-Ito palette, safe for color blindness
-    "fotobond": ("Lid van de Fotobond", "#009E73"),
-    "other": ("Geen lid van de Fotobond", "#E69F00"),
-    "doubt": ("Twijfel: welke afdeling?", "#999999"),
+# key: (label, CSS for the map pin and the legend dot); colors from the Okabe-Ito palette, safe for color blindness.
+# This is also the legend's order, most important first. Which status a club gets is decided in row().
+STATUS = {
+    "fotobond": ("Lid van de Fotobond", "background: #009E73;"),
+    "other": ("Geen lid van de Fotobond", "background: #E69F00;"),
+    "belgian": ("Club in België", "background: #0072B2;"),  # blue, as the apps use for museums and unmarked pins
+    "doubt": ("Twijfel: welke afdeling?", "background: #999999;"),
+    # A club that may have stopped is a ghost: a dotted ring with a pale fill, less prominent than the active clubs
+    # but clear against the map. "Opgeheven" rather than "gestopt", which next to the Fotobond labels could read as
+    # having left the Fotobond.
+    "former": ("Mogelijk opgeheven", "background: rgba(255, 255, 255, 0.75); border: 3px dotted #000;"),
 }
+MONTHS = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober",
+          "november", "december"]
 
 
 def remark_nl(club):
@@ -100,23 +140,50 @@ def remark_nl(club):
     return ""
 
 
+def former_note(club):
+    """For a club that may have stopped: that, and when we noted it (the date of the deciding log entry). Never the
+    log entry's text or author, which aren't for a public page (Data#91)."""
+    entry = former_entry(club)
+    if entry is None:
+        return ""
+    try:
+        day = datetime.date.fromisoformat(entry.get("date", ""))
+        return f"Mogelijk opgeheven, genoteerd op {day.day} {MONTHS[day.month - 1]} {day.year}."
+    except (TypeError, ValueError):  # a missing or malformed date doesn't make the club active again
+        return "Mogelijk opgeheven."
+
+
 def row(club):
     i, o = club["idPlus"], club.get("optional", {})
     number = o.get("nlSpecific", {}).get("fotobondNumber")
-    doubt = DOUBTS.get(AFDELING, {}).get(i["nickName"], "")
-    note = " ".join(n for n in (NOTES.get(AFDELING, {}).get(i["nickName"], ""), doubt) if n)
+    former = former_note(club)
+    doubt = DOUBTS.get(KEY, {}).get(i["nickName"], "")
+    note = " ".join(n for n in (former, NOTES.get(KEY, {}).get(i["nickName"], ""), doubt) if n)
     return {
         "name": i["fullName"], "town": i["town"],
         "lat": club["coordinates"]["latitude"], "lon": club["coordinates"]["longitude"],
-        "site": o.get("website", ""), "number": number, "remark": remark_nl(club), "note": note,
-        "status": "doubt" if doubt else "fotobond" if number else "other",
+        "site": o.get("website", ""), "number": number, "remark": remark_nl(club), "note": note, "former": former,
+        # the first that applies wins: former, doubt, then belgian, fotobond or other
+        "status": ("former" if former else "doubt" if doubt else "belgian" if IS_BELGIUM
+                   else "fotobond" if number else "other"),
     }
 
 
 # The afdeling's personal members (nickName Persoonlijk<NN>) are listed as one pseudo-club, as in the apps.
 clubs = json.loads(SOURCE.read_text(encoding="utf-8"))["clubs"]
 rows = sorted((row(c) for c in clubs), key=lambda r: (r["town"].casefold(), r["name"].casefold()))
-members = sum(1 for r in rows if r["number"])
+# The counts in the intro are of the active clubs, as on the index page; clubs that may have stopped get a sentence of
+# their own.
+formers = sum(1 for r in rows if r["former"])
+active = len(rows) - formers
+members = sum(1 for r in rows if r["number"] and not r["former"])
+
+# A note or doubt whose club isn't in this file would silently go missing, for example after the club moved to another
+# afdeling or got another nickName.
+nick_names = {c["idPlus"]["nickName"] for c in clubs}
+for table in (NOTES, DOUBTS):
+    for nick_name in table.get(KEY, {}).keys() - nick_names:
+        print(f"Warning: {nick_name} has an entry for {KEY} but is not in {SOURCE.name}", file=sys.stderr)
 
 # Clubs meeting at the same venue, or both pinned to their town centre, have pins a few meters apart, which look like
 # one pin at any zoom. Such a group is drawn as a small ring of pins around its spot, a fixed number of screen pixels
@@ -161,20 +228,37 @@ for r in rows:
 <td class="name">{e(r['name'])}</td>
 <td>{e(r['town'])}</td>
 <td>{site_link(r['site'])}</td>
-<td class="num">{f"{r['number']:04d}" if r['number'] else ""}</td>
+{"" if IS_BELGIUM else f'<td class="num">{r["number"]:04d}</td>' if r["number"] else '<td class="num"></td>'}
 <td>{remark}</td>
 <td class="note">{e(r['note'])}</td>
 </tr>""")
 
-legend = "".join(f'<span class="legend"><span class="dot" style="background:{c}"></span>{e(l)}</span>'
-                 for key, (l, c) in STATUS.items() if key != "doubt" or DOUBTS.get(AFDELING))
+# Only the statuses that occur on this page, in the order of STATUS.
+used = {r["status"] for r in rows}
+legend = "".join(f'<span class="legend"><span class="dot s-{key}"></span>{e(label)}</span>'
+                 for key, (label, _) in STATUS.items() if key in used)
+status_css = "\n".join(f"  .s-{key} {{ {css} }}" for key, (_, css) in STATUS.items())
+if IS_BELGIUM:
+    membership = ""
+elif members:
+    membership = f", waarvan {members} lid van de Fotobond"
+else:
+    membership = "; geen ervan is lid van de Fotobond"
+if formers == 1:
+    former_text = (" Daarnaast staat er 1 club bij die misschien opgeheven is: op de kaart een gestippelde cirkel."
+                   " Klopt dat niet, laat het ons dan weten.")
+elif formers:
+    former_text = (f" Daarnaast staan er {formers} clubs bij die misschien opgeheven zijn: op de kaart een gestippelde"
+                   " cirkel. Klopt dat niet, laat het ons dan weten.")
+else:
+    former_text = ""
 
 page = f"""<!doctype html>
 <html lang="nl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fotoclubs afdeling {AFDELING}</title>
+<title>{e(HEADING)}</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
@@ -186,8 +270,8 @@ page = f"""<!doctype html>
   p {{ max-width: 46em; }}
   #map {{ height: 520px; border: 1px solid var(--line); border-radius: 6px; margin: 12px 0; }}
   .legend {{ display: inline-block; margin: 0 18px 6px 0; }}
-  .dot {{ display: inline-block; width: 13px; height: 13px; border-radius: 50%; margin-right: 6px;
-          vertical-align: -1px; border: 1px solid #0006; }}
+  .dot {{ display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: 6px;
+          vertical-align: -1px; border: 1px solid #0006; box-sizing: border-box; }}
   .scroll {{ overflow-x: auto; }}
   table {{ border-collapse: collapse; width: 100%; }}
   th, td {{ text-align: left; vertical-align: top; padding: 7px 8px; border-bottom: 1px solid var(--line); }}
@@ -198,15 +282,15 @@ page = f"""<!doctype html>
   a {{ color: #0057A0; }}
   td a {{ overflow-wrap: anywhere; }}
   .pin {{ border-radius: 50%; border: 1px solid #000; opacity: 0.9; box-sizing: border-box; }}
-  .pin div {{ width: 100%; height: 100%; border-radius: 50%; }}
+{status_css}
   .leaflet-popup-content {{ font-size: 15px; }}
   p.help {{ color: var(--muted); font-size: 15px; margin-top: 0; }}
 </style>
 </head>
 <body>
 <p class="help"><a href="../index.html">&larr; Overzicht per afdeling</a> &nbsp;·&nbsp; <a href="../clubs.html">Alle clubs, met onderwerpen</a></p>
-<h1>Fotoclubs in afdeling {AFDELING}, {e(AFDELING_NAME)}</h1>
-<p>De {len(rows)} clubs zoals ze nu in Photo Club Hub staan, waarvan {members} lid van de Fotobond. Ga met de muis over een markering (of tik erop) voor de naam en de korte beschrijving van de club. Een klik op een markering laat ook de website zien.</p>
+<h1>{e(HEADING)}</h1>
+<p>De {active} actieve clubs zoals ze nu in Photo Club Hub staan{membership}.{former_text} Ga met de muis over een markering (of tik erop) voor de naam en de korte beschrijving van de club. Een klik op een markering laat ook de website zien.</p>
 <div>{legend}</div>
 <div id="map"></div>
 <p class="help"><b>De kaart bedienen:</b> sleep met de muis om de kaart te verschuiven, en zoom in en uit met het scrollwiel of met de knoppen + en - linksboven. Met een trackpad gaat het met twee vingers. Of klik eerst op de kaart: dan verschuiven de pijltjestoetsen de kaart, en zoomen de toetsen + en - in en uit.</p>
@@ -214,13 +298,12 @@ page = f"""<!doctype html>
 <h2>De clubs</h2>
 <p>Naam en plaats zijn het belangrijkst om te controleren: samen bepalen ze welke club het is. Markering, beschrijving en website kunnen altijd nog veranderen.</p>
 <div class="scroll"><table>
-<tr><th>Club</th><th>Plaats</th><th>Website</th><th>Fotobond-nr.</th><th>Beschrijving</th><th>Opmerking</th></tr>
+<tr><th>Club</th><th>Plaats</th><th>Website</th>{"" if IS_BELGIUM else "<th>Fotobond-nr.</th>"}<th>Beschrijving</th><th>Opmerking</th></tr>
 {''.join(table_rows)}
 </table></div>
 
 <script>
 const clubs = {json.dumps(rows, ensure_ascii=False)};
-const colors = {json.dumps({k: v[1] for k, v in STATUS.items()})};
 const map = L.map('map');
 L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
   maxZoom: 18, attribution: '&copy; OpenStreetMap-bijdragers'
@@ -229,11 +312,13 @@ const esc = s => s.replace(/[&<>"]/g, c => ({{'&':'&amp;','<':'&lt;','>':'&gt;',
 const bounds = [];
 for (const c of clubs) {{
   const icon = L.divIcon({{
-    className: 'pin', html: '<div style="background:' + colors[c.status] + '"></div>', iconSize: [18, 18],
+    className: 'pin s-' + c.status, html: '', iconSize: [18, 18],
     iconAnchor: [9 - c.dx, 9 - c.dy], tooltipAnchor: [c.dx, c.dy - 9], popupAnchor: [c.dx, c.dy - 9]
   }});
-  const m = L.marker([c.lat, c.lon], {{icon, keyboard: false}}).addTo(map);
-  const desc = c.remark ? esc(c.remark) : c.site ? '<i>Geen beschrijving.</i>' : '<i>Geen website.</i>';
+  // A ghost (former club) lies under the other pins, so it never hides an active club.
+  const m = L.marker([c.lat, c.lon], {{icon, keyboard: false, zIndexOffset: c.former ? -1000 : 0}}).addTo(map);
+  const desc = (c.remark ? esc(c.remark) : c.site ? '<i>Geen beschrijving.</i>' : '<i>Geen website.</i>')
+    + (c.former ? '<br><i>' + esc(c.former) + '</i>' : '');
   m.bindTooltip('<b>' + esc(c.name) + '</b>, ' + esc(c.town) + '<br>' + desc, {{maxWidth: 280, direction: 'top'}});
   const site = c.site ? '<br><a href="' + esc(c.site) + '" target="_blank" rel="noopener">' + esc(c.site.replace(/^https?:\\/\\/(www\\.)?/, '').replace(/\\/$/, '')) + '</a>' : '';
   m.bindPopup('<b>' + esc(c.name) + '</b><br>' + esc(c.town) + site + '<br><br>' + desc);
@@ -245,5 +330,6 @@ map.fitBounds(bounds, {{padding: [30, 30]}});
 </html>
 """
 
+OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 OUTPUT.write_text(page, encoding="utf-8")
-print(f"{len(rows)} clubs ({members} Fotobond) written to {OUTPUT}")
+print(f"{active} active clubs ({members} Fotobond), {formers} possibly stopped, written to {OUTPUT}")
