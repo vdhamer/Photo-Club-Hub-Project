@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
+# Created by Claude Code (guided by Peter van den Hamer) on 27/10/2026.
+
 """Build one page listing the clubs of all Fotobond afdelingen with their Dutch remark, to show clubs what other clubs
 do: the remarks name activity formats (photo chains, joint exhibitions, working groups) a club board can borrow.
 
 Usage: python3 remarks-page.py
 Reads every clubsNL<afdeling>.level1.json from the iOS repo's working tree, which should match what is live on GitHub
-main. Writes one self-contained HTML file to the Desktop, under the same name as online
-(fcdegender.nl/hub/review/clubs.html). The texts on the page are Dutch, because the readers are Dutch.
+main. Writes one self-contained HTML file into ~/Desktop/review, which mirrors fcdegender.nl/hub/review, as
+clubs.html. The texts on the page are Dutch, because the readers are Dutch.
 Companion of review-page.py, which makes the per-afdeling map for an afdeling's contact.
 """
 
@@ -15,11 +17,13 @@ import re
 import sys
 from pathlib import Path
 
+from former import former_entry
+
 if len(sys.argv) != 1:
     sys.exit("Usage: python3 remarks-page.py (no arguments)")
 
 SOURCE_DIR = Path.home() / "Developer/Xcode projects/SwiftUI/Photo Club Hub/JSON"
-OUTPUT = Path.home() / "Desktop/review/clubs.html"
+OUTPUT = Path.home() / "Desktop/review/clubs.html"  # Desktop/review mirrors fcdegender.nl/hub/review
 
 
 # Topics a club board might look for, each found by a pattern in the lower-cased Dutch remark. A remark can have
@@ -68,9 +72,12 @@ def remark_nl(club):
 rows = []
 # Belgian clubs have no Fotobond afdeling, so their Afdeling column says BE.
 # The afdeling's personal members (nickName Persoonlijk<NN>) are listed as one pseudo-club, as in the apps.
+# Clubs that may have stopped are left out, as the apps hide them; their afdeling's review page lists them.
 for path in sorted(SOURCE_DIR.glob("clubsNL[0-9][0-9].level1.json")) + [SOURCE_DIR / "clubsBE.level1.json"]:
     afdeling = re.search(r"clubs(?:NL(\d\d)|(BE))", path.name).group(1) or "BE"
     for club in json.loads(path.read_text(encoding="utf-8")).get("clubs", []):
+        if former_entry(club) is not None:
+            continue
         i, o = club["idPlus"], club.get("optional", {})
         rows.append({"name": i["fullName"], "town": i["town"], "afdeling": afdeling, "site": o.get("website", ""),
                      "number": o.get("nlSpecific", {}).get("fotobondNumber"), "remark": remark_nl(club)})
@@ -184,6 +191,6 @@ document.querySelectorAll('button.topic').forEach(b => b.addEventListener('click
 </html>
 """
 
-OUTPUT.parent.mkdir(exist_ok=True)
+OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 OUTPUT.write_text(page, encoding="utf-8")
 print(f"{len(rows)} clubs ({members} Fotobond) from afdelingen {', '.join(afdelingen)} written to {OUTPUT}")
