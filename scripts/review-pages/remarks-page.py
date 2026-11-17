@@ -12,12 +12,13 @@ Companion of review-page.py, which makes the per-afdeling map for an afdeling's 
 """
 
 import html
-import json
 import re
 import sys
 from pathlib import Path
 
+from banner import BANNER_CSS, BANNER_HTML
 from former import former_entry
+from level1_clubs import clubs_with_includes
 
 if len(sys.argv) != 1:
     sys.exit("Usage: python3 remarks-page.py (no arguments)")
@@ -75,7 +76,7 @@ rows = []
 # Clubs that may have stopped are left out, as the apps hide them; their afdeling's review page lists them.
 for path in sorted(SOURCE_DIR.glob("clubsNL[0-9][0-9].level1.json")) + [SOURCE_DIR / "clubsBE.level1.json"]:
     afdeling = re.search(r"clubs(?:NL(\d\d)|(BE))", path.name).group(1) or "BE"
-    for club in json.loads(path.read_text(encoding="utf-8")).get("clubs", []):
+    for club in clubs_with_includes(path):
         if former_entry(club) is not None:
             continue
         i, o = club["idPlus"], club.get("optional", {})
@@ -140,7 +141,7 @@ page = f"""<!doctype html>
   td.topics {{ font-size: 14px; }}
   .tag {{ display: inline-block; margin: 0 4px 4px 0; padding: 1px 7px; border-radius: 10px; background: #eef2f6;
           white-space: nowrap; }}
-</style>
+{BANNER_CSS}</style>
 </head>
 <body>
 <p class="help"><a href="index.html">&larr; Overzicht per afdeling</a></p>
@@ -187,7 +188,7 @@ document.querySelectorAll('button.topic').forEach(b => b.addEventListener('click
   update();
 }}));
 </script>
-</body>
+{BANNER_HTML}</body>
 </html>
 """
 
