@@ -23,7 +23,9 @@ import math
 import sys
 from pathlib import Path
 
+from banner import BANNER_CSS, BANNER_HTML
 from former import former_entry
+from level1_clubs import clubs_with_includes
 
 # afdeling: name as the Fotobond writes it. All 16 afdelingen; there is no afdeling 13. index-page.py reads this, and
 # BELGIUM below, from this file.
@@ -96,6 +98,7 @@ NOTES = {
         "fcMoerdijk": "Markering bij de expositieplek in Zevenbergen.",
         "fgTEMA": "Plaats Tilburg, zoals bij de Fotobond; markering bij de expositieplek in Moergestel.",
         "fgHuiskamer": "De website fgdehuiskamer.nl bestaat niet meer.",
+        "fcSilhouetGilze": "De website fc-silhouet.nl bestaat niet meer.",
         "fgWestBrabant": "De website fgwestbrabant.nl toont alleen een lege pagina.",
         "fc4Zoom": "Geen eigen website gevonden; gegevens uit een aankondiging van Galerie Arsis (2025). Markering bij die expositieplek.",
         "fcGBBreda": "Naam zoals op de pagina van Groei & Bloei Breda.",
@@ -170,7 +173,7 @@ def row(club):
 
 
 # The afdeling's personal members (nickName Persoonlijk<NN>) are listed as one pseudo-club, as in the apps.
-clubs = json.loads(SOURCE.read_text(encoding="utf-8"))["clubs"]
+clubs = clubs_with_includes(SOURCE)
 rows = sorted((row(c) for c in clubs), key=lambda r: (r["town"].casefold(), r["name"].casefold()))
 # The counts in the intro are of the active clubs, as on the index page; clubs that may have stopped get a sentence of
 # their own.
@@ -285,7 +288,7 @@ page = f"""<!doctype html>
 {status_css}
   .leaflet-popup-content {{ font-size: 15px; }}
   p.help {{ color: var(--muted); font-size: 15px; margin-top: 0; }}
-</style>
+{BANNER_CSS}</style>
 </head>
 <body>
 <p class="help"><a href="../index.html">&larr; Overzicht per afdeling</a> &nbsp;·&nbsp; <a href="../clubs.html">Alle clubs, met onderwerpen</a></p>
@@ -326,7 +329,7 @@ for (const c of clubs) {{
 }}
 map.fitBounds(bounds, {{padding: [30, 30]}});
 </script>
-</body>
+{BANNER_HTML}</body>
 </html>
 """
 
