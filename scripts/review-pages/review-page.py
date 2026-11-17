@@ -114,6 +114,16 @@ NOTES = {
         "fcRapenland": "Volgens de Fotobond club 1626; dat nummer staat nog niet in de apps.",
         "fegGemert": "Heeft Fotobond-nummer 1632 in de apps, maar staat niet op de ledenlijst van de Fotobond.",
     },
+    "BE": {
+        "KFSA": "Plaats Lille: daar vergadert de club sinds 2024. Fotogroep Antwerpen noemt Antwerpen.",
+        "fcNenufar": "Plaats Sint-Antonius, zoals de club het zelf schrijft. Fotogroep Antwerpen noemt Zoersel.",
+        "fcIrisBegijnendijk": "Plaats Begijnendijk, waar de club vergadert. Fotogroep Antwerpen noemt Begijnendijk-Betekom.",
+        "Lenske": "Plaats Boortmeerbeek, zoals de club zich noemt; het clublokaal ligt in Hever.",
+        "fcKeerpunt65": "Vroeger Foto-Diaclub Keerpunt '65.",
+        "Kollectiv9": "Markering op de plaats van de tentoonstelling in 2025; waar het collectief samenkomt, weten we niet.",
+        "viZie": "Markering op de plaats van de tentoonstelling in 2026; waar het collectief samenkomt, weten we niet.",
+        "fgSpectrumBerchem": "Naam zoals op de website van de club; Fotogroep Antwerpen noemt Koninklijke Fotokring Spectrum.",
+    },
 }
 
 # Clubs whose afdeling is in doubt, keyed by nickName, with the question. They are in the apps either way: the

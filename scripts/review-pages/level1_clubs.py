@@ -6,11 +6,13 @@ A Level 1 file can list other Level 1 files in `level1Header.level1URLIncludes`;
 clubsBE.level1.json moved the Antwerp clubs into clubsBE-Antwerpen.level1.json, reading only the file's own `clubs`
 would drop most Belgian clubs from the pages. Each include is resolved by its file name in the same folder as the
 including file (the iOS repo's JSON folder), not fetched from its URL, so the pages show the working tree.
-A file that is included twice is read once.
+A file that is included twice is read once. An include that is missing locally stops the script with a message,
+because a page silently lacking that file's clubs would look complete.
 """
 
 import json
 from pathlib import Path
+from urllib.parse import urlparse
 
 
 def clubs_with_includes(path, _seen=None):
@@ -23,5 +25,8 @@ def clubs_with_includes(path, _seen=None):
     data = json.loads(path.read_text(encoding="utf-8"))
     clubs = list(data.get("clubs", []))
     for url in data.get("level1Header", {}).get("level1URLIncludes", []):
-        clubs += clubs_with_includes(path.parent / url.rsplit("/", 1)[-1], seen)
+        include = path.parent / Path(urlparse(url).path).name  # file name only, without any ?query or #fragment
+        if not include.exists():
+            raise SystemExit(f"{path.name} includes {include.name}, which is not in {path.parent}")
+        clubs += clubs_with_includes(include, seen)
     return clubs
