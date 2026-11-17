@@ -14,13 +14,18 @@ Belgian clubs. Each writes one self-contained HTML file into `~/Desktop/review/`
 Paths are relative to `~/Desktop/review/` and to `fcdegender.nl/hub/review/` alike. Run `index-page.py` last: it shows
 when each page in the tree was last written.
 
-`former.py` is not run by itself: it holds the former-club rule the three scripts share (see below).
+`former.py`, `level1_clubs.py` and `banner.py` are not run by themselves: they hold the former-club rule (see below),
+the reading of a Level 1 file with its includes, and the banner (see below), which the three page-making scripts share.
 
 ## Data source
 
 The scripts read `clubsNL<NN>.level1.json` and `clubsBE.level1.json` from the working tree of the iOS repo
 (`~/Developer/Xcode projects/SwiftUI/Photo Club Hub/JSON/`), which should match what is live on GitHub `main`.
 The paths are those of one Mac, on purpose: these are personal tools, not part of a build.
+
+A file's clubs include those of the files it lists in `level1URLIncludes`, as in the apps: `clubsBE.level1.json`
+includes `clubsBE-Antwerpen.level1.json`, so the Belgian page and counts cover both. `level1_clubs.py` resolves each
+include by its file name in the same folder, so the pages show the working tree rather than GitHub.
 
 ## The pages
 
@@ -42,6 +47,18 @@ then by the club's `nickName`.
 Map colors come from the Okabe-Ito palette, which is safe for color blindness: green for a Fotobond club, orange for
 another club, grey for an afdeling in doubt, blue for a Belgian club.
 The legend shows only the colors that occur on the page.
+
+## Banner
+
+Every page ends with a banner fixed to the bottom of the window, taken from `banner.py`. It looks like the navigation
+bar on the pages the HTML app generates, so a reader can go on from the review pages to the main site
+(Fotoclubs, Fotomusea, Expertises, Documentatie).
+
+- It is a plain-CSS copy of `SiteNavigationBar` in the HTML app, not the app's Bootstrap markup: Bootstrap's CSS would
+  restyle the whole review page. The Documentatie menu is a `<details>` element, so no JavaScript is needed.
+- When the app's menu changes, please also change `banner.py`: nothing keeps the two implementations in step.
+- Its links and icon use full URLs (`https://www.fcdegender.nl/hub/...`), so the banner also works on a local page
+  opened from `~/Desktop/review/` before uploading.
 
 ## Former clubs
 
