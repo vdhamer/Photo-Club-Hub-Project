@@ -17,11 +17,12 @@ The texts on the page are Dutch, because the readers are Dutch.
 import ast # abstract syntax trees
 import datetime
 import html
-import json
 import sys
 from pathlib import Path
 
+from banner import BANNER_CSS, BANNER_HTML
 from former import former_entry
+from level1_clubs import clubs_with_includes
 
 if len(sys.argv) != 1:
     sys.exit("Usage: python3 index-page.py (no arguments)")
@@ -46,7 +47,7 @@ AFDELINGEN, BELGIUM = constant("AFDELINGEN"), constant("BELGIUM")
 def counts(path):
     # The afdeling's personal members (nickName Persoonlijk<NN>) count as one pseudo-club, as in the apps.
     # Clubs that may have stopped don't count: the page describes the clubs shown in the apps, which hide them.
-    clubs = [c for c in json.loads(path.read_text(encoding="utf-8")).get("clubs", []) if former_entry(c) is None]
+    clubs = [c for c in clubs_with_includes(path) if former_entry(c) is None]
     return sum(1 for c in clubs if c.get("optional", {}).get("nlSpecific", {}).get("fotobondNumber")), len(clubs)
 
 
@@ -164,7 +165,7 @@ page = f"""<!doctype html>
   .legend {{ display: inline-block; margin: 0 18px 0 0; font-size: 15px; }}
   .dot {{ display: inline-block; width: 13px; height: 13px; border-radius: 3px; margin-right: 6px;
           vertical-align: -1px; }}
-</style>
+{BANNER_CSS}</style>
 </head>
 <body>
 <h1>Fotoclubs in Photo Club Hub</h1>
@@ -196,7 +197,7 @@ zijn dan het percentage.</li>
 <li>De persoonlijke leden van een afdeling staan erbij als één groep, net als in de apps.</li>
 </ul>
 <p class="help">Stand van {today}.</p>
-</body>
+{BANNER_HTML}</body>
 </html>
 """
 
