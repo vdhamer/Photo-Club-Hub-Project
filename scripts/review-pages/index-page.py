@@ -21,6 +21,7 @@ import sys
 from pathlib import Path
 
 from banner import BANNER_CSS, BANNER_HTML
+from footer import FOOTER_CSS, footer_html
 from former import former_entry
 from level1_clubs import clubs_with_includes
 
@@ -135,7 +136,6 @@ rows.append(f'<tr><td class="num">BE</td><td><a href="{BELGIUM}/{BELGIUM}.html">
             f'<td class="num">{updated(be_page)}</td></tr>')
 
 clubs_updated = updated(OUTPUT.parent / "clubs.html")
-today = datetime.date.today().strftime("%d-%m-%Y")
 
 page = f"""<!doctype html>
 <html lang="nl">
@@ -165,7 +165,7 @@ page = f"""<!doctype html>
   .legend {{ display: inline-block; margin: 0 18px 0 0; font-size: 15px; }}
   .dot {{ display: inline-block; width: 13px; height: 13px; border-radius: 3px; margin-right: 6px;
           vertical-align: -1px; }}
-{BANNER_CSS}</style>
+{FOOTER_CSS}{BANNER_CSS}</style>
 </head>
 <body>
 <h1>Fotoclubs in Photo Club Hub</h1>
@@ -196,8 +196,7 @@ Nederlandse clubs, omdat Belgische clubs geen lid kunnen zijn.</li>
 zijn dan het percentage.</li>
 <li>De persoonlijke leden van een afdeling staan erbij als één groep, net als in de apps.</li>
 </ul>
-<p class="help">Stand van {today}.</p>
-{BANNER_HTML}</body>
+{footer_html()}{BANNER_HTML}</body>
 </html>
 """
 

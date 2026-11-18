@@ -17,6 +17,7 @@ import sys
 from pathlib import Path
 
 from banner import BANNER_CSS, BANNER_HTML
+from footer import FOOTER_CSS, footer_html
 from former import former_entry
 from level1_clubs import clubs_with_includes
 
@@ -141,7 +142,7 @@ page = f"""<!doctype html>
   td.topics {{ font-size: 14px; }}
   .tag {{ display: inline-block; margin: 0 4px 4px 0; padding: 1px 7px; border-radius: 10px; background: #eef2f6;
           white-space: nowrap; }}
-{BANNER_CSS}</style>
+{FOOTER_CSS}{BANNER_CSS}</style>
 </head>
 <body>
 <p class="help"><a href="index.html">&larr; Overzicht per afdeling</a></p>
@@ -188,7 +189,7 @@ document.querySelectorAll('button.topic').forEach(b => b.addEventListener('click
   update();
 }}));
 </script>
-{BANNER_HTML}</body>
+{footer_html()}{BANNER_HTML}</body>
 </html>
 """
 

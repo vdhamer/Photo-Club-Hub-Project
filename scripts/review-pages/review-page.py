@@ -24,6 +24,7 @@ import sys
 from pathlib import Path
 
 from banner import BANNER_CSS, BANNER_HTML
+from footer import FOOTER_CSS, footer_html
 from former import former_entry
 from level1_clubs import clubs_with_includes
 
@@ -298,7 +299,7 @@ page = f"""<!doctype html>
 {status_css}
   .leaflet-popup-content {{ font-size: 15px; }}
   p.help {{ color: var(--muted); font-size: 15px; margin-top: 0; }}
-{BANNER_CSS}</style>
+{FOOTER_CSS}{BANNER_CSS}</style>
 </head>
 <body>
 <p class="help"><a href="../index.html">&larr; Overzicht per afdeling</a> &nbsp;·&nbsp; <a href="../clubs.html">Alle clubs, met onderwerpen</a></p>
@@ -339,7 +340,7 @@ for (const c of clubs) {{
 }}
 map.fitBounds(bounds, {{padding: [30, 30]}});
 </script>
-{BANNER_HTML}</body>
+{footer_html()}{BANNER_HTML}</body>
 </html>
 """
 
