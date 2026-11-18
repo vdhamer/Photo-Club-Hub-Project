@@ -14,8 +14,9 @@ Belgian clubs. Each writes one self-contained HTML file into `~/Desktop/review/`
 Paths are relative to `~/Desktop/review/` and to `fcdegender.nl/hub/review/` alike. Run `index-page.py` last: it shows
 when each page in the tree was last written.
 
-`former.py`, `level1_clubs.py` and `banner.py` are not run by themselves: they hold the former-club rule (see below),
-the reading of a Level 1 file with its includes, and the banner (see below), which the three page-making scripts share.
+`former.py`, `level1_clubs.py`, `banner.py` and `footer.py` are not run by themselves: they hold the former-club rule
+(see below), the reading of a Level 1 file with its includes, the banner and the footer (see below), which the three
+page-making scripts share.
 
 ## Data source
 
@@ -59,6 +60,21 @@ bar on the pages the HTML app generates, so a reader can go on from the review p
 - When the app's menu changes, please also change `banner.py`: nothing keeps the two implementations in step.
 - Its links and icon use full URLs (`https://www.fcdegender.nl/hub/...`), so the banner also works on a local page
   opened from `~/Desktop/review/` before uploading.
+
+## Footer
+
+Just above the banner, every page says when it was generated, taken from `footer.py` (Project#28), in the same words
+and date format as the pages the HTML app generates:
+"Deze pagina is onderdeel van het Fotoclub Hub netwerk en is gegenereerd op 16 nov 2026, 22:51 GMT+1."
+
+- It is the generation time, not the time the clubs last changed: regenerating a page gives it a new time, even when
+  nothing else changed. A reader can judge from the page alone whether it may be behind the apps.
+- It copies `FooterText` in the HTML app, whose time format comes from Apple's `Date.FormatStyle` for Dutch.
+  `footer.py` builds the same string in plain Python, so the output doesn't depend on the Mac's language settings.
+  When the app's wording or format changes, please also change `footer.py`.
+- Unlike the banner, the footer is printed: on paper the date matters most.
+- The "Kaart bijgewerkt" column on `index.html` still shows each page file's modification date. Since pages are
+  generated where they are indexed, that is the footer's date.
 
 ## Former clubs
 
